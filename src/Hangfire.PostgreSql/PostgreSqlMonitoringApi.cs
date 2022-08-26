@@ -119,9 +119,9 @@ namespace Hangfire.PostgreSql
 
         List<ServerDto> result = servers.Select(item => new ServerDto {
           Name = item.Server.Id,
-          Heartbeat = item.Server.LastHeartbeat,
+          Heartbeat = item.Server.LastHeartbeat.ToDateTimeUtc(),
           Queues = item.Data.Queues,
-          StartedAt = item.Data.StartedAt ?? DateTime.MinValue,
+          StartedAt = item.Data.StartedAt?.ToDateTimeUtc() ?? DateTime.MinValue,
           WorkersCount = item.Data.WorkerCount,
         }).ToList();
 
@@ -252,7 +252,7 @@ namespace Hangfire.PostgreSql
             .ToList()
             .Select(x => new StateHistoryDto {
               StateName = x.Name,
-              CreatedAt = x.CreatedAt,
+              CreatedAt = x.CreatedAt.ToDateTimeUtc(),
               Reason = x.Reason,
               Data = new SafeDictionary<string, string>(SerializationHelper.Deserialize<Dictionary<string, string>>(x.Data),
                 StringComparer.OrdinalIgnoreCase),
@@ -260,7 +260,7 @@ namespace Hangfire.PostgreSql
             .ToList();
 
         return new JobDetailsDto {
-          CreatedAt = job.CreatedAt,
+          CreatedAt = job.CreatedAt.ToDateTimeUtc(),
           Job = DeserializeJob(job.InvocationData, job.Arguments),
           History = history,
           Properties = parameters,
@@ -521,7 +521,7 @@ namespace Hangfire.PostgreSql
       Dictionary<string, FetchedJobDto> result = jobs.ToDictionary(job => job.Id.ToString(), job => new FetchedJobDto {
         Job = DeserializeJob(job.InvocationData, job.Arguments),
         State = job.StateName,
-        FetchedAt = job.FetchedAt,
+        FetchedAt = job.FetchedAt?.ToDateTimeUtc(),
       });
 
       return new JobList<FetchedJobDto>(result);

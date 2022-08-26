@@ -1,4 +1,4 @@
-﻿// This file is part of Hangfire.PostgreSql.
+// This file is part of Hangfire.PostgreSql.
 // Copyright © 2014 Frank Hommers <http://hmm.rs/Hangfire.PostgreSql>.
 // 
 // Hangfire.PostgreSql is free software: you can redistribute it and/or modify
@@ -19,8 +19,8 @@
 //   
 //    Special thanks goes to him.
 
-using System;
 using Hangfire.PostgreSql.Properties;
+using NodaTime;
 
 namespace Hangfire.PostgreSql.Entities
 {
@@ -30,7 +30,7 @@ namespace Hangfire.PostgreSql.Entities
     public long JobId { get; set; }
     public string Name { get; set; }
     public string Reason { get; set; }
-    public DateTime CreatedAt { get; set; }
+    public Instant CreatedAt { get; set; }
     public string Data { get; set; }
   }
 }

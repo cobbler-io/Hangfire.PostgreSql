@@ -27,6 +27,7 @@ using System.Threading;
 using Dapper;
 using Hangfire.PostgreSql.Properties;
 using Hangfire.Storage;
+using NodaTime;
 using Npgsql;
 
 namespace Hangfire.PostgreSql
@@ -253,7 +254,7 @@ namespace Hangfire.PostgreSql
       public long Id { get; set; }
       public long JobId { get; set; }
       public string Queue { get; set; }
-      public DateTime? FetchedAt { get; set; }
+      public Instant? FetchedAt { get; set; }
       public int UpdateCount { get; set; }
     }
   }

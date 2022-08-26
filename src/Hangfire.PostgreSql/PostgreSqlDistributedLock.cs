@@ -25,6 +25,7 @@ using System.Diagnostics;
 using System.Threading;
 using Dapper;
 using Hangfire.Logging;
+using NodaTime;
 using Npgsql;
 
 namespace Hangfire.PostgreSql
@@ -135,7 +136,7 @@ namespace Hangfire.PostgreSql
               ",
                 new {
                   Resource = resource,
-                  Acquired = DateTime.UtcNow,
+                  Acquired = SystemClock.Instance.GetCurrentInstant(),
                 }, trx);
               trx.Commit();
             }
@@ -184,7 +185,7 @@ namespace Hangfire.PostgreSql
           connection.Execute($@"DELETE FROM ""{options.SchemaName}"".""lock"" WHERE ""resource"" = @Resource AND ""acquired"" < @Timeout",
             new {
               Resource = resource,
-              Timeout = DateTime.UtcNow - options.DistributedLockTimeout,
+              Timeout = SystemClock.Instance.GetCurrentInstant() - Duration.FromTimeSpan(options.DistributedLockTimeout),
             }, transaction: transaction);
 
           transaction.Commit();
@@ -218,7 +219,7 @@ namespace Hangfire.PostgreSql
               ON CONFLICT DO NOTHING;
             ", new {
               Resource = resource,
-              Acquired = DateTime.UtcNow,
+              Acquired = SystemClock.Instance.GetCurrentInstant(),
             });
           }
           catch (Exception ex)

@@ -32,6 +32,7 @@ using Hangfire.Common;
 using Hangfire.PostgreSql.Entities;
 using Hangfire.Server;
 using Hangfire.Storage;
+using NodaTime;
 using Npgsql;
 using IsolationLevel = System.Transactions.IsolationLevel;
 
@@ -197,7 +198,7 @@ namespace Hangfire.PostgreSql
       return new JobData {
         Job = job,
         State = jobData.StateName,
-        CreatedAt = jobData.CreatedAt,
+        CreatedAt = jobData.CreatedAt.ToDateTimeUtc(),
         LoadException = loadException,
       };
     }
@@ -419,7 +420,7 @@ namespace Hangfire.PostgreSql
       ServerData data = new() {
         WorkerCount = context.WorkerCount,
         Queues = context.Queues,
-        StartedAt = DateTime.UtcNow,
+        StartedAt = SystemClock.Instance.GetCurrentInstant(),
       };
 
       string sql = $@"
