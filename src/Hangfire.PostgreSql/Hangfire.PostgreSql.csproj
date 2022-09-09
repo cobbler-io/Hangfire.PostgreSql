@@ -4,12 +4,11 @@
     <Description>PostgreSql storage implementation for Hangfire (background job system for ASP.NET and aspnet core applications).</Description>
     <Copyright>Copyright © 2014-2021 Frank Hommers and others</Copyright>
     <AssemblyTitle>Hangfire PostgreSql Storage</AssemblyTitle>
-    <VersionPrefix>1.9.4-noda</VersionPrefix>
+    <VersionPrefix>1.9.4</VersionPrefix>
     <Authors>Frank Hommers and others (Burhan Irmikci (barhun), Zachary Sims(zsims), kgamecarter, Stafford Williams (staff0rd), briangweber, Viktor Svyatokha (ahydrax), Christopher Dresel (Dresel), Vytautas Kasparavičius (vytautask), Vincent Vrijburg, David Roth (davidroth).</Authors>
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>Hangfire.PostgreSql</AssemblyName>
     <OutputType>Library</OutputType>
-    <PackageId>Hangfire.PostgreSql.NodaTime</PackageId>
     <PackageTags>Hangfire;PostgreSql;Postgres</PackageTags>
     <PackageReleaseNotes>https://github.com/frankhommers/Hangfire.PostgreSql/releases</PackageReleaseNotes>
     <PackageProjectUrl>http://hmm.rs/Hangfire.PostgreSql</PackageProjectUrl>
