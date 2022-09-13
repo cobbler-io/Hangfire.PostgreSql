@@ -1,6 +1,6 @@
 # Hangfire.PostgreSql.NodaTime
 
-Forked from https://github.com/frankhommers/Hangfire.PostgreSql version 1.6.4.2
+Forked from https://github.com/frankhommers/Hangfire.PostgreSql
 
 This fork fixes the library to support NodaTime at the database connection level.
 
