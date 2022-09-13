@@ -53,7 +53,7 @@
       <PropertyGroup>
         <!--For pre-processor directive use in source code -->
         <DefineConstants>USING_NPGSQL_VERSION_5</DefineConstants>
-        <PackageId>Hangfire.PostgreSql.Npgsql5</PackageId>
+        <PackageId>Hangfire.PostgreSql.NodaTime.Npgsql5</PackageId>
       </PropertyGroup>
       <ItemGroup>
         <PackageReference Include="Npgsql" Version="5.0.0" />
@@ -61,7 +61,7 @@
     </When>
     <Otherwise>
       <PropertyGroup>
-        <PackageId>Hangfire.PostgreSql</PackageId>
+        <PackageId>Hangfire.PostgreSql.NodaTime</PackageId>
       </PropertyGroup>
       <ItemGroup>
         <PackageReference Include="Npgsql" Version="6.0.0" />
